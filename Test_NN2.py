@@ -55,18 +55,23 @@ X_train, X_test, Y_train, Y_test = np.array(train_test_split(x, y, test_size = 0
 X_train = np.array(X_train)
 X_test = np.array(X_test)
 
-layers = [2, 3, 4, 5] 
+layers = [1, 2] 
 #neurons = [32, 64, 128, 256]
-neurons = np.array(range(3, 26)) * 10
+#neurons = np.array(range(3, 26)) * 10
+neurons = [16, 32, 64, 128]
 #LR = [0.001, 0.01, 0.05, 0.1]
-LR = np.array(range(1,21))
-LR = np.interp(LR, (LR.min(), LR.max()), (0.005, 0.1))
+#LR = np.array(range(1,21))
+#LR = np.interp(LR, (LR.min(), LR.max()), (0.005, 0.1))
+LR = [0.01, 0.05, 0.1, 0.3]
 
-activations =  ['relu', 'elu', 'selu', 'softmax', 'softplus']     # ['relu', 'elu', 'tanh', 'sigmoid', 'selu', 'softmax', 'softplus']
-optimizers = ['rmsprop', 'adam', 'adagrad', 'adadelta', 'adamax', 'nadam']
-batch_sizes = list(range(1,11))
-batch_sizes = [x*50 for x in batch_sizes]
-ModPerGen = 40
+#activations =  ['relu', 'elu', 'selu', 'softmax', 'softplus']     # ['relu', 'elu', 'tanh', 'sigmoid', 'selu', 'softmax', 'softplus']
+#optimizers = ['rmsprop', 'adam', 'adagrad', 'adadelta', 'adamax', 'nadam']
+activations = ['relu', 'selu']
+optimizers = ['adam','adamax']
+#batch_sizes = list(range(1,11))
+#batch_sizes = [x*50 for x in batch_sizes]
+batch_sizes = [50,100,150,200]
+ModPerGen = 50
 islands = 8
 Population = []
 
@@ -85,7 +90,7 @@ K.tensorflow_backend._get_available_gpus()
 
 
 Parallel(n_jobs = 8)(delayed(GA.GA)(X_train, Y_train, X_test, Y_test, 6, layers, neurons, LR,
-                    activations, optimizers, batch_sizes, ModPerGen, 0.05, 0.25, 0.7, island, Global_Population) for island in range(islands))
+                    activations, optimizers, batch_sizes, ModPerGen, 0.02, 0.08, 0.9, island, Global_Population) for island in range(islands))
 
 
 

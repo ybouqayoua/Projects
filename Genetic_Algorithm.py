@@ -41,7 +41,7 @@ def GA(X_train, Y_train, X_test, Y_test, num_gen, layers, neurons, LR, activatio
         
         # take the fittest models from previous Population
         fittest_cutoff = int(fittest_rate*ModPerGen)
-        fittest_models =  int(fittest_cutoff/2)
+        fittest_models =  int(fittest_cutoff*2/3)
         #fittest_cutoff + rand.random(fittest_cutoff,ModPerGen)
         Population_tmp = list(Population[:fittest_models])
         
