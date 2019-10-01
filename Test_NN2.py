@@ -17,7 +17,7 @@ import os
 import multiprocessing
 
 manager = multiprocessing.Manager()
-Global_Population = manager.list()
+#Global_Population = manager.list()
 
 
 #config = tf.ConfigProto( device_count = {'GPU':1,  'CPU':8} )
@@ -90,7 +90,7 @@ K.tensorflow_backend._get_available_gpus()
 
 
 Parallel(n_jobs = 8)(delayed(GA.GA)(X_train, Y_train, X_test, Y_test, 6, layers, neurons, LR,
-                    activations, optimizers, batch_sizes, ModPerGen, 0.02, 0.08, 0.9, island, Global_Population) for island in range(islands))
+                    activations, optimizers, batch_sizes, ModPerGen, 0.02, 0.08, 0.9, island, []) for island in range(islands))
 
 
 

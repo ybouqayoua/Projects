@@ -143,13 +143,13 @@ def mutate(Pop, Gen, X_train, Y_train, X_test, Y_test, params, Pop_tmp, pt, Glob
     tmp = [layer, neuron, lr,  activation, optimizer, batchsize]
     #print(tmp)
     #print(Pop_tmp)
-    while list(tmp[i] for i in idx) in (Global_pop[i][:] for i in range(len(Global_pop))):
-        print("already in population")
-        rand_param = rand.randint(0, len(params)-1)
-        rand_hyperparam = params[rand_param][rand.randint(1,len(params[rand_param])-1)]
-        new_Model[rand_param] = rand_hyperparam
-        [layer, neuron, lr,  activation, optimizer, batchsize] = [new_Model[0], new_Model[1], new_Model[2], new_Model[3], new_Model[4], new_Model[5]]
-        tmp = [layer, neuron, lr,  activation, optimizer, batchsize]
+    #while list(tmp[i] for i in idx) in (Global_pop[i][:] for i in range(len(Global_pop))):
+    #    print("already in population")
+    rand_param = rand.randint(0, len(params)-1)
+    rand_hyperparam = params[rand_param][rand.randint(1,len(params[rand_param])-1)]
+    new_Model[rand_param] = rand_hyperparam
+    [layer, neuron, lr,  activation, optimizer, batchsize] = [new_Model[0], new_Model[1], new_Model[2], new_Model[3], new_Model[4], new_Model[5]]
+    tmp = [layer, neuron, lr,  activation, optimizer, batchsize]
 
     
     Global_pop.append(list(tmp[i] for i in idx))
